@@ -1,4 +1,4 @@
-## Board_v1.4 LTS .....   
+### Board_v1.4 LTS .....   
 (2019.05.06)  
 Swagger2 설정  
 
@@ -7,7 +7,7 @@ INFO  : LoginController의 PostRegister 내용을 CommonService로 옮김
 INFO  : MemberEntity에서 @OneToMany Column을 Member -> Uid로 변경
 
 
-## Board_v1.3 LTS .....  
+### Board_v1.3 LTS .....  
 (2019.05.05)  
 Spring Security 설정  
 회원가입 페이지와 Spring Security 연결  
@@ -17,19 +17,19 @@ Warn  : LoginController의 PostRegister 내용을 CommonService로 옮겨놓는�
 (2019.05.06) INFO  : MemberEntity에서 @OneToMany Column을 Member -> Uid로 변경  
 
 
-## Board_v1.2 LTS ..... 
+### Board_v1.2 LTS ..... 
 (2019.05.04)  
 로그인 페이지 생성  
 회원가입 페이지 생성  
 
 
-## Board_v1.1 LTS ..... 
+### Board_v1.1 LTS ..... 
 (2019.05.04)  
 게시글 수정 + 파일 업로드 / 다운로드  
 게시글 작성 + 파일 업로드 / 다운로드  
 
 
-## Board_v1.0 LTS ..... 
+### Board_v1.0 LTS ..... 
 (2019.05.03)  
 Spring Boot / Tymeleaf / Jpa를 통한 게시글 조회  
 Spring Boot / Tymeleaf / Jpa를 통한 게시글 수정  
