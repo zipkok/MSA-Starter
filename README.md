@@ -1,1 +1,2 @@
-# MSA-Starter
+# Spring-Boot-Starter
+내가 멈춘 그 곳에, 내가 원한 것이 있기를 .....

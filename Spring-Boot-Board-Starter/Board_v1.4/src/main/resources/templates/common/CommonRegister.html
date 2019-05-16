@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Login Page</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}"/>
+	 <!-- 
+	<link rel="stylesheet" href="@{/inc/user/css/V2Join.css}">
+	 -->
+</head>
+<body>
+	<div class="container">
+		<h2> 회원가입 페이지 </h2>
+		<form id="frm" method="post">
+			<table class="board_detail">
+				<p>
+					<label for="username">UserName</label>
+					<input type="text" id="uid" name="uid" placeholder="아이디를 입력하세요." />
+				</p><br>
+				<p>
+					<label for="password">Password</label> 
+					<input type="password" id="bcrypt" name="bcrypt" placeholder="패스워드를 입력하세요." />
+				</p><br>
+				<p>
+					<label for="text">Role</label> 
+					<input list="browsers" name="roles[0].roleName">
+					<datalist id="browsers">
+						<option value="MANAGER">
+						<!-- Manager는 리스트만 조회 가능 -->
+						<option value="ADMIN">
+						<!-- ADMIN은 Board 수정 가능 -->
+						<option value="GUEST">
+						<!-- GUEST는 guest.html만 조회 가능 -->
+					</datalist>
+				</p><br>
+				<!-- input type="checkbox" id="remember-me" name="remember-me" / -->
+			</table>
+			<!-- input type="hidden" th:name="${_csrf.parameterName}"
+					th:value="${_csrf.token}" /-->
+			<input type="submit" id="submit" value="가입하기" class="btn">
+		</form>
+	</div>
+</body>
+</html>

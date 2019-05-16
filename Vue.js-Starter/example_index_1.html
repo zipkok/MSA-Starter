@@ -1,0 +1,31 @@
+<!-- DOM이라는 View안에 Vue.js라는 View Model을 넣은 방법 -->
+<html>
+    <head>
+        <title>Vue Sample</title>
+    </head>
+    <body>
+        <div id="app">
+            {{ message }}
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+        <script>
+        // 뷰 인스턴스 생성
+        // new Vue({
+        //      ...
+        // })
+            new Vue({
+            // new Vue로 뷰 인스턴스 생성
+
+                el: '#app',
+                // el 속성으로 뷰 인스턴스가 그려질 지점을 지정
+
+                data: {
+                    message: 'Hello Vue.js'
+                }
+                // data 속성으로 message 값을 정의하여 화면에 {{ message }}에 연결
+
+            });
+
+        </script>
+    </body>
+</html>

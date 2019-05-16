@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Login Page</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}"/>
+	 <!-- 
+	<link rel="stylesheet" href="@{/inc/user/css/V2Join.css}">
+	 -->
+</head>
+<body>
+	<div class="container">
+		<h2> 회원가입 페이지 </h2>
+		<form id="frm" name="frm" method="post">
+			<table class="board_detail">
+				<p>
+					<label for="username">UserName</label>
+					<input type="text" id="uname" name="uname" placeholder="아이디를 입력하세요." />
+				</p><br>
+				<p>
+					<label for="password">Password</label> 
+					<input type="password" id="upw" name="upw" placeholder="패스워드를 입력하세요." />
+				</p><br>
+				<!-- 
+				<p>
+					<label for="password">Password</label> 
+					<input type="password" id="password_check" name="password_check" placeholder="패스워드를 한 번 더 입력하세요." />
+				</p><br>
+				 -->
+			 <!-- 
+				<p>
+					<label for="text">Role</label> 
+					<!-- input type="checkbox" id="remember-me" name="remember-me" /--/>
+					<input list="browsers" name="role_list">
+					<datalist id="browsers">
+						<option value="MANAGER">
+						<!-- Manager는 리스트만 조회 가능 --/>
+						<option value="ADMIN">
+						<!-- ADMIN은 Board 수정 가능 --/>
+						<option value="GUEST">
+						<!-- GUEST는 guest.html만 조회 가능 --/>
+					</datalist>
+				</p><br>
+			-->
+			</table>
+			<input type="submit" id="submit" value="가입하기" class="btn">
+		</form>
+	</div>
+</body>
+</html>

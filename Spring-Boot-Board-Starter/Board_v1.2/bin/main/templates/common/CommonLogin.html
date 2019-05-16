@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Login Page</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+	<div class="container">
+		<h2> 로그인 페이지 </h2>
+		<div th:if="${param.error != null}">
+			<h2>Invalid UserName or password</h2>
+			<h2 th:value="${param.error}"></h2>
+		</div>
+
+		<div th:if="${param.logout != null}">
+			<h2>You have been logged out.</h2>
+		</div>
+			
+		<form id="frm" name="frm" method="post">
+			<table class="board_detail">
+				<p>
+					<label for="username">UserName</label>
+					<input type="text" id="username" name="username" value="user88" />
+				</p><br>
+				<p>
+					<label for="password">Password</label> 
+					<input type="password" id="password" name="password" value="pw88" />
+				</p><br>
+				<p>
+					<label for="text">Remember-Me</label> 
+					<input type="checkbox" id="remember-me" name="remember-me" />
+				</p><br>
+			</table>
+			<button type="submit" class="btn">로그인</button>
+		    <a href="/registration" class="btn">회원 가입</a>
+		</form>
+	</div>
+</body>
+</html>

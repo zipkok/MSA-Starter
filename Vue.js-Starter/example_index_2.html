@@ -1,0 +1,30 @@
+<!-- DOM이라는 View안에 Vue.js라는 View Model을 넣은 방법 -->
+<html>
+    <head>
+        <title>Vue Sample</title>
+    </head>
+    <body>
+        <div id="app">
+            {{ message }}
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+                data: { 
+                    message: 'Hello Vue.js'
+                },
+                beforeCreate: function() {
+                    console.log("beforeCreate"); },
+                created: function() {
+                    console.log("created"); },
+                mounted: function() {
+                    console.log("mounted");
+                    this.message = 'Hello Vue!';},
+                    // this.message가 존재하지 않으면, udated: function()은 콘솔에 출력되지 않습니다.
+                updated: function() {
+                    console.log("updated"); }
+            });
+        </script>
+    </body>
+</html>
