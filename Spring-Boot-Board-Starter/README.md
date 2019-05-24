@@ -1,7 +1,7 @@
 ### Board_v1.5 LTS .....   
-(2019.05.18)  
-Paging 구현
-Search 구현
+(2019.05.25)  
+Paging 구현 (게시글 5개가 한 페이지로 정의)
+Search 구현 (제목으로 검색)
 
 Error : csrf와 mutipart를 Form 형식으로  에러 발생, 현재는 csrf.disable() 상태 .....    
 INFO  : board.interceptor.LoggerInterceptor의 perHandle 메소드의 log.info 내용 정렬 .....     
