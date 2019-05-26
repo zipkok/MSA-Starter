@@ -1,7 +1,6 @@
-### Board_v1.5 LTS .....   
-(2019.05.26)  
-Paging 구현 (게시글 5개가 한 페이지로 정의)  
-Search 구현 (제목으로 검색)  
+### Board_v1.6 LTS .....   
+(~)  
+Vue.js와 연동
 
 Error :
 
