@@ -23,22 +23,16 @@ public class BoardServiceImpl implements BoardService {
 	BoardRepository BoardRepository;
 	
 	@Autowired
-	PageRepository PageRepository;
-	
-	@Autowired
 	FileUtils fileUtils;
 	
-	// ÇöÀç ÆäÀÌÁö ¸®½ºÆ® ¹æ¹ı, List / Paging / Searching ±â´É ±¸Çö
-	// SearchingÀº Á¦¸ñÀ» ±âÁØÀ¸·Î °Ë»ö °¡´É
-    @Override
+	// í˜„ì¬ í˜ì´ì§€ ë¦¬ìŠ¤íŠ¸ ë°©ë²•, List / Paging / Searching ê¸°ëŠ¥ êµ¬í˜„
+	// Searchingì€ ì œëª©ì„ ê¸°ì¤€ìœ¼ë¡œ ê²€ìƒ‰ ê°€ëŠ¥
+        @Override
 	public Page<BoardEntity> findByTitle(String title, Pageable pageable) throws Exception{
-    	//int paging = pageable.getPageNumber();
-        return BoardRepository.findByTitleLike("%"+title+"%", pageable);
-    }
+                return BoardRepository.findByTitleLike("%"+title+"%", pageable);
+        }
 
-	
-	
-    // ±âÁ¸ ÆäÀÌÁö ¸®½ºÆ® ¹æ¹ı, Page ¹× Search ±â´ÉÀ» Ãß°¡ÇÏ¸é¼­ »èÁ¦µÈ ¼­ºñ½º ±â´É
+        // ê¸°ì¡´ í˜ì´ì§€ ë¦¬ìŠ¤íŠ¸ ë°©ë²•, Page ë° Search ê¸°ëŠ¥ì„ ì¶”ê°€í•˜ë©´ì„œ ì‚­ì œëœ ì„œë¹„ìŠ¤ ê¸°ëŠ¥
 	@Override
 	public List<BoardEntity> selectBoardList() throws Exception {
 		return BoardRepository.findAllByOrderByBoardIdxDesc();
@@ -67,16 +61,16 @@ public class BoardServiceImpl implements BoardService {
 		else {
 			throw new NullPointerException();
 		}
-	}
-	
-	@Override
-	public void deleteBoard(int boardIdx) {
-		BoardRepository.deleteById(boardIdx);
-	}
-
-	@Override
-	public BoardFileEntity selectBoardFileInformation(int boardIdx, int idx) throws Exception {
-		BoardFileEntity boardFile = BoardRepository.findBoardFile(boardIdx, idx);
-		return boardFile;
-	}
+	 }
+	 
+	 @Override
+	 public void deleteBoard(int boardIdx) {
+	 	BoardRepository.deleteById(boardIdx);
+	 }
+ 
+	 @Override
+	 public BoardFileEntity selectBoardFileInformation(int boardIdx, int idx) throws Exception {
+	 	BoardFileEntity boardFile = BoardRepository.findBoardFile(boardIdx, idx);
+	 	return boardFile;
+	 }
 }
