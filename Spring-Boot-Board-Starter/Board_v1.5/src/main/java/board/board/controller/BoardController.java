@@ -4,15 +4,19 @@ import board.board.entity.BoardEntity;
 import board.board.service.BoardService;
 import board.board.entity.BoardFileEntity;
 
+
 import java.io.File;
 import java.net.URLEncoder;
+//import java.util.List;
 //import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 //import org.springframework.ui.ModelMap;
@@ -37,11 +41,36 @@ public class BoardController {
 	
 	@ApiOperation(value = "게시글 조희 페이지, Manager 권한의 Index 페이지")
     @GetMapping("/board")
-    public String showPage(Model model, @RequestParam(defaultValue = "0") int page) throws Exception {
-        model.addAttribute("dataJ", BoardService.getAllCountrys(PageRequest.of(page, 5)));
-        model.addAttribute("currentPage", page);
-        return "/board/boardList";
+    public String showPage(Model model, @RequestParam(defaultValue="") String title, @RequestParam(defaultValue = "0") int page, Pageable pageable) throws Exception {
+		//model.addAttribute("dataJ", PageRequest.of(page, 5)));
+		//model.addAttribute("dataJ", BoardService.findByTitle(title);
+		//->model.addAttribute("dataJ", BoardService.findByTitle(title, PageRequest.of(page, 5)));
+		//->
+		Page<BoardEntity> list = BoardService.findByTitle(title, PageRequest.of(page, 5));
+		model.addAttribute("boardlist", list);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("title", title);
+	    System.out.println("boardlist \t : \t\t" + list.toString());
+	    System.out.println("title\t\t : \t\t" + title);
+	    System.out.println("page\t\t : \t\t" + page);
+		return "/board/boardList";
     }
+	/*
+	@ApiOperation(value = "게시글 조희 페이지, Manager 권한의 Index 페이지")
+    @GetMapping("/board")
+    public String showPage(Model model, @RequestParam(defaultValue="") String title, @RequestParam(defaultValue = "0") int page) throws Exception {
+		//model.addAttribute("dataJ", PageRequest.of(page, 5)));
+		//model.addAttribute("dataJ", BoardService.findByTitle(title);
+		//->model.addAttribute("dataJ", BoardService.findByTitle(title, PageRequest.of(page, 5)));
+		//->
+		Page<BoardEntity> list = BoardService.findByTitle(title, PageRequest.of(page, 5));
+		model.addAttribute("boardlist", list);
+	    model.addAttribute("currentPage", page);
+	    System.out.println("title\t\t : \t\t" + title);
+	    System.out.println("page\t\t : \t\t" + page);
+		return "/board/boardList";
+    }
+	*/
 	
 	
 	/* ModelAndView에서 Model로 변경

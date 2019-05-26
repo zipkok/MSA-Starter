@@ -9,6 +9,17 @@
 <body>
     <div class="container">
     	<h2>게시글 목록</h2>
+    	<hr/>
+    	<form action="/board" class="form-inline">
+	        <div class="form-group mb-2">
+	         <input type="text" class="form-control" name="title" placeholder="Search User" th:value="${title}"/>
+	         <input type="submit" id="test" value="Search"  class="btn btn-primary"/>
+	         <!-- 
+	         <input type="hidden" id="page" name="page" th:value="${currentPage}" />
+	          -->
+	        </div>
+	     </form>
+		<hr/>
        	<table class="board_list">
 	        <colgroup>
 	            <col width="15%"/>
@@ -25,30 +36,29 @@
 	            </tr>
 	        </thead>
 	        <tbody>
-	        	<tr th:each="list :${dataJ.content}">
+	        	<tr th:if="${#lists.size(boardlist)} > 0" th:each="list :${boardlist.content}">
 	        		<td th:text="${list.boardIdx}"></td>
 	        		<td class="title">
 	        		<a href="/board/" th:attrappend="href=${list.boardIdx}" th:text="${list.title}"></a></td>
 	        		<td th:text="${list.hitCnt}"></td>
 	        		<td th:text="${list.createdDatetime}"></td>
 	        	</tr> 
-	        	
-	        	<tr th:unless="${#lists.size(dataJ)} > 0">
-	        		<td colspan="4">조회된 결과가 없습니다.</td>
+	        	<tr th:unless="${#lists.size(boardlist)} > 0">
+	        		<td colspan="4">No Have</td>
 	        	</tr>
-	        	 
 	        </tbody>
 	    </table>
-	    
-				<ul class="nav nav-pills">
-					<li class="nav-item"
-						th:each="pageNum:  ${#numbers.sequence(0,dataJ.totalPages-1)}"><a
-						th:href="@{/board/(page=${pageNum})}" th:text="${pageNum}" class="nav-link"
-						th:classappend="${currentPage}==${pageNum}?'active':''"></a></li>
-				</ul>
-		     
+
+		<ul class="nav nav-pills">
+			<li class="nav-item"
+				th:each="pageNum:  ${#numbers.sequence(0,boardlist.totalPages-1)}"><a
+				th:href="@{/board/(title=${title},page=${pageNum})}" th:text="${pageNum}" class="nav-link"
+				th:classappend="${currentPage}==${pageNum}?'active':''"  ></a>
+			</li>
+		</ul>
 	     
 	    <a href="/board/write" class="btn">글 쓰기</a>
     </div>
+
 </body>
 </html>

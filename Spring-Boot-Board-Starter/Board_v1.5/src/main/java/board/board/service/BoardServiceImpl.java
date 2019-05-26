@@ -28,18 +28,17 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	FileUtils fileUtils;
 	
+	// 현재 페이지 리스트 방법, List / Paging / Searching 기능 구현
+	// Searching은 제목을 기준으로 검색 가능
     @Override
-    public Page<BoardEntity> getAllCountrys(Pageable pageable) throws Exception {
-        System.out.println("전체 데이터 수 =" + pageable.getOffset());
-        System.out.println("전체 데이터 수 =" + pageable.getPageNumber());
-        System.out.println("전체 데이터 수 =" + pageable.getPageSize());
-        System.out.println("전체 데이터 수 =" + pageable.getClass());
-        System.out.println("전체 데이터 수 =" + pageable.getSort());
-        //System.out.println("전체 데이터 수 =" + pageable.getSortOr(sort));
-
-        return PageRepository.findAll(pageable);
+	public Page<BoardEntity> findByTitle(String title, Pageable pageable) throws Exception{
+    	//int paging = pageable.getPageNumber();
+        return BoardRepository.findByTitleLike("%"+title+"%", pageable);
     }
+
 	
+	
+    // 기존 페이지 리스트 방법, Page 및 Search 기능을 추가하면서 삭제된 서비스 기능
 	@Override
 	public List<BoardEntity> selectBoardList() throws Exception {
 		return BoardRepository.findAllByOrderByBoardIdxDesc();
