@@ -1,15 +1,12 @@
 ### Board_v1.6 LTS .....   
-(~)  
-Vue.js와 연동
-
-Error :
+(2019.05.26)  
+Actuator 설정  
 
 Error : 한글로 검색 시 NullException 발생 .....    
 Error : 존재하지 않은 값을 검색 시 알림 문구가 적용되지 않음 .....  
 Error : csrf와 mutipart를 Form 형식으로  에러 발생, 현재는 csrf.disable() 상태 .....    
-
-  
-  
+   
+    
 ### Board_v1.5 LTS .....   
 (2019.05.26)  
 Paging 구현 (게시글 5개가 한 페이지로 정의)  
