@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>board</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}"/>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body>
+    <div class="container">
+    	<h2>게시글 목록</h2>
+    	<hr/>
+    	<form action="/board" class="form-inline">
+	        <div class="form-group mb-2">
+	         <input type="text" class="form-control" name="title" placeholder="Search User" th:value="${title}"/>
+	         <input type="submit" id="test" value="Search"  class="btn btn-primary"/>
+	         <!-- 
+	         <input type="hidden" id="page" name="page" th:value="${currentPage}" />
+	          -->
+	        </div>
+	     </form>
+		<hr/>
+       	<table class="board_list">
+	        <colgroup>
+	            <col width="15%"/>
+	            <col width="*"/>
+	            <col width="15%"/>
+	            <col width="20%"/>
+	        </colgroup>
+	        <thead class="thead-light" style="background-color :bisque">
+	            <tr>
+	                <th scope="col">글번호</th>
+	                <th scope="col">제목</th>
+	                <th scope="col">조회수</th>
+	                <th scope="col">작성일</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        	<tr th:if="${#lists.size(boardlist)} > 0" th:each="list :${boardlist.content}">
+	        		<td th:text="${list.boardIdx}"></td>
+	        		<td class="title">
+	        		<a href="/board/" th:attrappend="href=${list.boardIdx}" th:text="${list.title}"></a></td>
+	        		<td th:text="${list.hitCnt}"></td>
+	        		<td th:text="${list.createdDatetime}"></td>
+	        	</tr> 
+	        	<tr th:unless="${#lists.size(boardlist)} > 0">
+	        		<td colspan="4">No Have</td>
+	        	</tr>
+	        </tbody>
+	    </table>
+
+		<ul class="nav nav-pills">
+			<li class="nav-item"
+				th:each="pageNum:  ${#numbers.sequence(0,boardlist.totalPages-1)}"><a
+				th:href="@{/board/(title=${title},page=${pageNum})}" th:text="${pageNum}" class="nav-link"
+				th:classappend="${currentPage}==${pageNum}?'active':''"  ></a>
+			</li>
+		</ul>
+	     
+	    <a href="/board/write" class="btn">글 쓰기</a>
+    </div>
+
+</body>
+</html>
