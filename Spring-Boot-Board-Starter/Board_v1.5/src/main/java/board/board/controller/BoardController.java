@@ -39,42 +39,25 @@ public class BoardController {
 	@Autowired
 	private BoardService BoardService;
 	
-	@ApiOperation(value = "°Ô½Ã±Û Á¶Èñ ÆäÀÌÁö, Manager ±ÇÇÑÀÇ Index ÆäÀÌÁö")
-    @GetMapping("/board")
-    public String showPage(Model model, @RequestParam(defaultValue="") String title, @RequestParam(defaultValue = "0") int page, Pageable pageable) throws Exception {
-		//model.addAttribute("dataJ", PageRequest.of(page, 5)));
-		//model.addAttribute("dataJ", BoardService.findByTitle(title);
-		//->model.addAttribute("dataJ", BoardService.findByTitle(title, PageRequest.of(page, 5)));
-		//->
-		Page<BoardEntity> list = BoardService.findByTitle(title, PageRequest.of(page, 5));
-		model.addAttribute("boardlist", list);
-	    model.addAttribute("currentPage", page);
-	    model.addAttribute("title", title);
-	    System.out.println("boardlist \t : \t\t" + list.toString());
-	    System.out.println("title\t\t : \t\t" + title);
-	    System.out.println("page\t\t : \t\t" + page);
-		return "/board/boardList";
-    }
-	/*
-	@ApiOperation(value = "°Ô½Ã±Û Á¶Èñ ÆäÀÌÁö, Manager ±ÇÇÑÀÇ Index ÆäÀÌÁö")
-    @GetMapping("/board")
-    public String showPage(Model model, @RequestParam(defaultValue="") String title, @RequestParam(defaultValue = "0") int page) throws Exception {
-		//model.addAttribute("dataJ", PageRequest.of(page, 5)));
-		//model.addAttribute("dataJ", BoardService.findByTitle(title);
-		//->model.addAttribute("dataJ", BoardService.findByTitle(title, PageRequest.of(page, 5)));
-		//->
-		Page<BoardEntity> list = BoardService.findByTitle(title, PageRequest.of(page, 5));
-		model.addAttribute("boardlist", list);
-	    model.addAttribute("currentPage", page);
-	    System.out.println("title\t\t : \t\t" + title);
-	    System.out.println("page\t\t : \t\t" + page);
-		return "/board/boardList";
-    }
-	*/
+	@ApiOperation(value = "ê²Œì‹œê¸€ ì¡°í¬ í˜ì´ì§€, Manager ê¶Œí•œì˜ Index í˜ì´ì§€")
+        @GetMapping("/board")
+        public String showPage(Model model, @RequestParam(defaultValue="") String title, @RequestParam(defaultValue = "0") int page) throws Exception {
+	//model.addAttribute("dataJ", PageRequest.of(page, 5)));
+	//model.addAttribute("dataJ", BoardService.findByTitle(title);
+	//->model.addAttribute("dataJ", BoardService.findByTitle(title, PageRequest.of(page, 5)));
+	//->
+	Page<BoardEntity> list = BoardService.findByTitle(title, PageRequest.of(page, 5));
+	model.addAttribute("boardlist", list);
+	model.addAttribute("currentPage", page);
+	model.addAttribute("title", title);
+
+	System.out.println("title\t\t : \t\t" + title);
+	System.out.println("page\t\t : \t\t" + page);
+	return "/board/boardList";
+        }
 	
-	
-	/* ModelAndView¿¡¼­ Model·Î º¯°æ
-	@ApiOperation(value = "°Ô½Ã±Û Á¶Èñ ÆäÀÌÁö, Manager ±ÇÇÑÀÇ Index ÆäÀÌÁö")
+	/* ModelAndViewì—ì„œ Modelë¡œ ë³€ê²½
+	@ApiOperation(value = "ê²Œì‹œê¸€ ì¡°í¬ í˜ì´ì§€, Manager ê¶Œí•œì˜ Index í˜ì´ì§€")
 	@RequestMapping(value="/board", method=RequestMethod.GET)
 	public ModelAndView BoardList(ModelMap model) throws Exception{
 		ModelAndView mav = new ModelAndView("/board/BoardList");
@@ -84,20 +67,20 @@ public class BoardController {
 	}
 	*/
 	
-	@ApiOperation(value = "°Ô½Ã±Û ÀÛ¼º ÆäÀÌÁö")
+	@ApiOperation(value = "ê²Œì‹œê¸€ ì‘ì„± í˜ì´ì§€")
 	@RequestMapping(value="/board/write", method=RequestMethod.GET)
 	public String BoardWrite() throws Exception{
 		return "/board/BoardWrite";
 	}
 	
     
-	@ApiOperation(value = "°Ô½Ã±Û ÀÛ¼º ÆäÀÌÁö")
+	@ApiOperation(value = "ê²Œì‹œê¸€ ì‘ì„± í˜ì´ì§€")
 	@RequestMapping(value="/board/write", method=RequestMethod.POST)
 	public String writeBoard(BoardEntity board, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
 		BoardService.saveBoard(board, multipartHttpServletRequest);
 		return "redirect:/board";
 	}
-	/* multipart Ãß°¡·Î ÀÎÇÑ º¯°æ
+	/* multipart ì¶”ê°€ë¡œ ì¸í•œ ë³€ê²½
 	@RequestMapping(value="/board/write", method=RequestMethod.POST)
 	public String writeBoard(BoardEntity board) throws Exception{
 		BoardService.saveBoard(board);
@@ -105,9 +88,9 @@ public class BoardController {
 	}
 	*/
 	
-	@ApiOperation(value = "°Ô½Ã±Û »ó¼¼ ÆäÀÌÁö")
+	@ApiOperation(value = "ê²Œì‹œê¸€ ìƒì„¸ í˜ì´ì§€")
 	@RequestMapping(value="/board/{boardIdx}", method=RequestMethod.GET)
-	public ModelAndView BoardDetail(@PathVariable("boardIdx") @ApiParam(value="°Ô½Ã±Û ¹øÈ£") int boardIdx) throws Exception{
+	public ModelAndView BoardDetail(@PathVariable("boardIdx") @ApiParam(value="ê²Œì‹œê¸€ ë²ˆí˜¸") int boardIdx) throws Exception{
 		ModelAndView mav = new ModelAndView("/board/BoardDetail");
 		BoardEntity board = BoardService.selectBoardDetail(boardIdx);
 		mav.addObject("board", board);
@@ -115,7 +98,7 @@ public class BoardController {
 	}
 	
 	
-	@ApiOperation(value = "°Ô½Ã±Û »ó¼¼ ÆäÀÌÁö")
+	@ApiOperation(value = "ê²Œì‹œê¸€ ìƒì„¸ í˜ì´ì§€")
 	@RequestMapping(value="/board/{boardIdx}", method=RequestMethod.PUT)
 	public String saveBoard(BoardEntity board) throws Exception{
 		BoardService.saveBoard(board, null);
@@ -123,15 +106,15 @@ public class BoardController {
 	}
 	
 	
-	@ApiOperation(value = "°Ô½Ã±Û »ó¼¼ ÆäÀÌÁö")
+	@ApiOperation(value = "ê²Œì‹œê¸€ ìƒì„¸ í˜ì´ì§€")
 	@RequestMapping(value="/board/{boardIdx}", method=RequestMethod.DELETE)
-	public String deleteBoard(@PathVariable("boardIdx") @ApiParam(value="°Ô½Ã±Û ¹øÈ£") int boardIdx) throws Exception{
+	public String deleteBoard(@PathVariable("boardIdx") @ApiParam(value="ê²Œì‹œê¸€ ë²ˆí˜¸") int boardIdx) throws Exception{
 		BoardService.deleteBoard(boardIdx);
 		return "redirect:/board";
 	}
 	
 	
-	@ApiOperation(value = "°Ô½Ã±Û ÆÄÀÏ Ã·ºÎ")
+	@ApiOperation(value = "ê²Œì‹œê¸€ íŒŒì¼ ì²¨ë¶€")
 	@RequestMapping(value="/board/file", method=RequestMethod.GET)
 	public void fileBoard(int boardIdx, int idx, HttpServletResponse response) throws Exception {
 		BoardFileEntity file = BoardService.selectBoardFileInformation(boardIdx, idx); 
