@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import board.board.entity.BoardEntity;
 import board.board.repository.BoardRepository;
-import board.board.repository.PageRepository;
 import board.common.FileUtils;
 import board.board.entity.BoardFileEntity;
 
@@ -21,18 +20,18 @@ import org.springframework.data.domain.Pageable;
 public class BoardServiceImpl implements BoardService {
 	@Autowired
 	BoardRepository BoardRepository;
-	
-	@Autowired
-	PageRepository PageRepository;
-	
+		
 	@Autowired
 	FileUtils fileUtils;
 	
 	// 현재 페이지 리스트 방법, List / Paging / Searching 기능 구현
-	// Searching은 제목을 기준으로 검색 가능
+	// Searching은 제목을 기준으로 검색 가능	
     @Override
-	public Page<BoardEntity> findByTitle(String title, Pageable pageable) throws Exception{
-        return BoardRepository.findByTitleLike("%"+title+"%", pageable);
+	public Page<BoardEntity> findByTitle(String title, String contents, Pageable pageable) throws Exception{
+    //public Page<BoardEntity> findByTitle(String title, Pageable pageable) throws Exception{
+        //return BoardRepository.findByTitleLikeOrContents("%"+title+"%", "%"+contents+"%", pageable);
+    	return BoardRepository.findByTitleLikeAndContentsLike("%"+ title +"%", "%" + contents + "%", pageable);
+        //return BoardRepository.findByTitleLike("%"+title+"%", pageable);
     }
 	
     // 기존 페이지 리스트 방법, Page 및 Search 기능을 추가하면서 삭제된 서비스 기능
