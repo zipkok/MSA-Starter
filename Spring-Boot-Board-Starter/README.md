@@ -7,7 +7,7 @@ Error : 존재하지 않은 값을 검색 시 알림 문구가 적용되지 않�
 Error : csrf와 mutipart를 Form 형식으로  에러 발생, 현재는 csrf.disable() 상태 .....    
     
 INFO  : localhost:1010/actuator/* 로 검색 가능  
-INFO  : 제목, 내용으로 검색   
+INFO  : 제목, 내용으로 검색 가능   
     
 ### Board_v1.5 LTS .....   
 (2019.05.26)  
