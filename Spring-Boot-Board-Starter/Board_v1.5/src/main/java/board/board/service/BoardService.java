@@ -10,7 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface BoardService {
-	Page<BoardEntity> findByTitle(String title, Pageable pageable) throws Exception;
+	Page<BoardEntity> findByTitle(String title, String contents, Pageable pageable) throws Exception;	
+	//Page<BoardEntity> findByTitle(String title, Pageable pageable) throws Exception;	
 	
 	List<BoardEntity> selectBoardList() throws Exception;
 	

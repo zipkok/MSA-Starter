@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import board.board.entity.BoardEntity;
 import board.board.repository.BoardRepository;
-import board.board.repository.PageRepository;
 import board.common.FileUtils;
 import board.board.entity.BoardFileEntity;
 
@@ -21,18 +20,21 @@ import org.springframework.data.domain.Pageable;
 public class BoardServiceImpl implements BoardService {
 	@Autowired
 	BoardRepository BoardRepository;
-	
+		
 	@Autowired
 	FileUtils fileUtils;
 	
-	// í˜„ì¬ í˜ì´ì§€ ë¦¬ìŠ¤íŠ¸ ë°©ë²•, List / Paging / Searching ê¸°ëŠ¥ êµ¬í˜„
-	// Searchingì€ ì œëª©ì„ ê¸°ì¤€ìœ¼ë¡œ ê²€ìƒ‰ ê°€ëŠ¥
-        @Override
-	public Page<BoardEntity> findByTitle(String title, Pageable pageable) throws Exception{
-                return BoardRepository.findByTitleLike("%"+title+"%", pageable);
-        }
-
-        // ê¸°ì¡´ í˜ì´ì§€ ë¦¬ìŠ¤íŠ¸ ë°©ë²•, Page ë° Search ê¸°ëŠ¥ì„ ì¶”ê°€í•˜ë©´ì„œ ì‚­ì œëœ ì„œë¹„ìŠ¤ ê¸°ëŠ¥
+	// ÇöÀç ÆäÀÌÁö ¸®½ºÆ® ¹æ¹ı, List / Paging / Searching ±â´É ±¸Çö
+	// SearchingÀº Á¦¸ñÀ» ±âÁØÀ¸·Î °Ë»ö °¡´É	
+    @Override
+	public Page<BoardEntity> findByTitle(String title, String contents, Pageable pageable) throws Exception{
+    //public Page<BoardEntity> findByTitle(String title, Pageable pageable) throws Exception{
+        //return BoardRepository.findByTitleLikeOrContents("%"+title+"%", "%"+contents+"%", pageable);
+    	return BoardRepository.findByTitleLikeAndContentsLike("%"+ title +"%", "%" + contents + "%", pageable);
+        //return BoardRepository.findByTitleLike("%"+title+"%", pageable);
+    }
+	
+    // ±âÁ¸ ÆäÀÌÁö ¸®½ºÆ® ¹æ¹ı, Page ¹× Search ±â´ÉÀ» Ãß°¡ÇÏ¸é¼­ »èÁ¦µÈ ¼­ºñ½º ±â´É
 	@Override
 	public List<BoardEntity> selectBoardList() throws Exception {
 		return BoardRepository.findAllByOrderByBoardIdxDesc();
@@ -61,16 +63,16 @@ public class BoardServiceImpl implements BoardService {
 		else {
 			throw new NullPointerException();
 		}
-	 }
-	 
-	 @Override
-	 public void deleteBoard(int boardIdx) {
-	 	BoardRepository.deleteById(boardIdx);
-	 }
- 
-	 @Override
-	 public BoardFileEntity selectBoardFileInformation(int boardIdx, int idx) throws Exception {
-	 	BoardFileEntity boardFile = BoardRepository.findBoardFile(boardIdx, idx);
-	 	return boardFile;
-	 }
+	}
+	
+	@Override
+	public void deleteBoard(int boardIdx) {
+		BoardRepository.deleteById(boardIdx);
+	}
+
+	@Override
+	public BoardFileEntity selectBoardFileInformation(int boardIdx, int idx) throws Exception {
+		BoardFileEntity boardFile = BoardRepository.findBoardFile(boardIdx, idx);
+		return boardFile;
+	}
 }

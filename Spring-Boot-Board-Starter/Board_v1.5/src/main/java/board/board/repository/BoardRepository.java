@@ -18,5 +18,6 @@ public interface BoardRepository extends CrudRepository<BoardEntity, Integer> {
 	BoardFileEntity findBoardFile(@Param("boardIdx") int boardIdx, @Param("idx") int idx);
 	
 	//Page<BoardEntity> findAll(Pageable pageable);
-	Page<BoardEntity> findByTitleLike(String title, Pageable pageable);
+	//Page<BoardEntity> findByTitleLike(String title, Pageable pageable);
+	Page<BoardEntity> findByTitleLikeAndContentsLike(String title, String contents, Pageable pageable);
 }

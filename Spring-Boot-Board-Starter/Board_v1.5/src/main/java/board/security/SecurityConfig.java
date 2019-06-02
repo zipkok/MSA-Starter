@@ -29,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     	log.info(" /resource/** is Filtering ..... ");
 		web.ignoring().antMatchers("/resources/**");
 		web.ignoring().antMatchers("/images/**");
+		web.ignoring().antMatchers("/actuator/**");		
 		log.info("============================= END ================================\n");
 	}
 	

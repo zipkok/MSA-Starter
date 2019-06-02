@@ -12,11 +12,12 @@
     	<hr/>
     	<form action="/board" class="form-inline">
 	        <div class="form-group mb-2">
-	         <input type="text" class="form-control" name="title" placeholder="Search User" th:value="${title}"/>
-	         <input type="submit" id="test" value="Search"  class="btn btn-primary"/>
-	         <!-- 
-	         <input type="hidden" id="page" name="page" th:value="${currentPage}" />
-	          -->
+	         <label>Search Title &nbsp;</label>
+	         <input type="text" class="form-control" name="title" placeholder="Search Title" th:value="${title}"/>
+	         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	         <label>Search Contents &nbsp;</label>
+	         <input type="text" class="form-control" name="contents" placeholder="Search Contents" th:value="${contents}"/>
+	         <input type="submit" value="Search"  class="btn btn-primary"/>
 	        </div>
 	     </form>
 		<hr/>
@@ -52,7 +53,7 @@
 		<ul class="nav nav-pills">
 			<li class="nav-item"
 				th:each="pageNum:  ${#numbers.sequence(0,boardlist.totalPages-1)}"><a
-				th:href="@{/board/(title=${title},page=${pageNum})}" th:text="${pageNum}" class="nav-link"
+				th:href="@{/board/(title=${title},contents=${contents},page=${pageNum})}" th:text="${pageNum}" class="nav-link"
 				th:classappend="${currentPage}==${pageNum}?'active':''"  ></a>
 			</li>
 		</ul>
